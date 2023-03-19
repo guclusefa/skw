@@ -1,12 +1,12 @@
 <template>
   <header class="header mb-3 fs-5 shadow">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-0 py-2">
+    <nav class="navbar navbar-expand-lg bg-light px-0 py-2">
       <div class="container">
         <!-- Brand -->
-        <a class="navbar-brand d-flex align-items-center" href="#">
+        <RouterLink class="navbar-brand d-flex align-items-center" :to="{ name: 'home' }" active-class="nav-active">
           <img src="@/assets/images/logo.svg">
           {{ $t('app.title') }}
-        </a>
+        </RouterLink>
         <!-- Navbar toggle -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
           <i class="bi bi-list-task"></i>
@@ -58,7 +58,7 @@ export default {
   text-transform: uppercase;
 
   img {
-    height: 2rem;
+    height: 2.4rem;
     width: auto;
     margin-right: 0.5rem;
   }
