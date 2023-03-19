@@ -1,0 +1,10 @@
+{
+    "routes": {
+        "home": "Home",
+        "about": "About"
+    },
+    "app": {
+        "title": "test {test}",
+        "description": "A Vue 3 + Pinia + Vue Router + Vue I18n starter project"
+    }
+}

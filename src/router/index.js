@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import i18n from '../services/i18n.js'
+
 import HomeView from '../views/HomeView.vue'
 
 const router = createRouter({
@@ -22,7 +24,7 @@ const router = createRouter({
 
 // for each route change document title
 router.afterEach((to) => {
-  document.title = to.name + ' - ' + import.meta.env.VITE_APP_TITLE
+  document.title = i18n.global.t(`routes.${to.name}`) + ' - ' + import.meta.env.VITE_APP_TITLE
 })
 
 export default router
