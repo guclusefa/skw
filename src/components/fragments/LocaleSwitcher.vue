@@ -1,14 +1,16 @@
 <template>
-    <select v-model="selectedLocale">
-        <option v-for="locale in locales" :key="locale" :value="locale" :selected="locale === selectedLocale">
-            {{ labels[locale] }}
-        </option>
-    </select>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+            <i class="bi bi-translate"></i> {{ labelsShort[selectedLocale] }}
+        </a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#" v-for="locale in locales" :key="locale"
+                    @click="selectedLocale = locale">{{ labels[locale] }}</a></li>
+        </ul>
+    </li>
 </template>
 
 <script>
-
-
 export default {
     name: "LocaleSwitcher",
     data() {
@@ -17,6 +19,10 @@ export default {
             labels: {
                 en: "English",
                 fr: "Français",
+            },
+            labelsShort: {
+                en: "EN",
+                fr: "FR",
             },
             selectedLocale: localStorage.getItem("locale") || import.meta.env.VITE_I18N_LOCALE,
         };

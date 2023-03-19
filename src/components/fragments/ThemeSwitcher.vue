@@ -1,8 +1,10 @@
 <template>
-    <button @click="toggleDark(); toggleTransition()">
-        <span v-if="isDark">🌙</span>
-        <span v-else>☀️</span>
-    </button>
+    <li class="nav-item">
+        <a class="nav-link" href="#" role="button" @click="toggleDark(); toggleTransition()">
+            <i class="bi bi-moon-fill" v-if="isDark"></i>
+            <i class="bi bi-brightness-high-fill" v-else></i>
+        </a>
+    </li>
 </template>
 
 <script setup>
