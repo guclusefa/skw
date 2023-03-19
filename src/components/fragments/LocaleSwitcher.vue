@@ -1,6 +1,6 @@
 <template>
     <select v-model="selectedLocale">
-        <option v-for="locale in locales" :key="locale" :value="locale">
+        <option v-for="locale in locales" :key="locale" :value="locale" :selected="locale === selectedLocale">
             {{ labels[locale] }}
         </option>
     </select>
