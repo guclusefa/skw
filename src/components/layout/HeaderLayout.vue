@@ -1,6 +1,6 @@
 <template>
   <header class="header mb-3 fs-5 shadow">
-    <nav class="navbar navbar-expand-lg bg-light px-0 py-2">
+    <nav class="navbar navbar-expand-lg px-0 py-2">
       <div class="container">
         <!-- Brand -->
         <RouterLink class="navbar-brand d-flex align-items-center" :to="{ name: 'home' }" active-class="nav-active">
@@ -67,7 +67,7 @@ export default {
 .navbar-toggler {
   border: none;
   background-color: transparent;
-  color: #fff;
+  color: $primary;
   font-size: 1.5rem;
 
   &:focus {
@@ -85,11 +85,11 @@ export default {
 
 .nav-active {
   font-weight: 700;
-  color: #fff;
+  color: $primary;
 
   &:focus,
   &:hover {
-    color: #fff;
+    color: $primary;
   }
 }
 </style>
