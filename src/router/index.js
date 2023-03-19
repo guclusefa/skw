@@ -23,8 +23,10 @@ const router = createRouter({
 })
 
 // for each route change document title
+// change html lang to current language
 router.afterEach((to) => {
   document.title = i18n.global.t(`routes.${to.name}`) + ' - ' + import.meta.env.VITE_APP_TITLE
+  document.documentElement.lang = i18n.global.locale
 })
 
 export default router

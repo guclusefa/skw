@@ -25,7 +25,12 @@ export default {
         selectedLocale() {
             localStorage.setItem("locale", this.selectedLocale);
             this.$i18n.locale = this.selectedLocale;
+            document.querySelector("html").setAttribute("lang", this.selectedLocale);
         },
+    },
+    mounted() {
+        this.$i18n.locale = this.selectedLocale;
+        document.querySelector("html").setAttribute("lang", this.selectedLocale);
     },
 };
 </script>
