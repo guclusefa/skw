@@ -20,11 +20,32 @@ export default {
                 this.$el.querySelector("input").focus();
             }
         });
+        // espace to clear search field and unfocus
+        document.addEventListener("keydown", (e) => {
+            if (e.key == "Escape") {
+                this.$el.querySelector("input").value = "";
+                this.$el.querySelector("input").blur();
+            }
+        });
+        // clicking anywhere inside has-search will focus on input
+        document.addEventListener("click", (e) => {
+            if (e.target.closest(".has-search")) {
+                this.$el.querySelector("input").focus();
+            }
+        });
     },
 };
 </script>
 
 <style scoped lang="scss">
+
+input:focus {
+    border:none;
+}
+
+.bg-dark {
+    background-color: #000000 !important;
+}
 .has-search:hover, .has-search:focus-within {
     // $primary with opacity of 0.25
     box-shadow: 0 0 0 0.2rem darken($primary, 5%);
@@ -43,6 +64,7 @@ export default {
     line-height: 2.375rem;
     text-align: center;
     cursor: pointer;
+    opacity: 0.5;
 }
 
 .has-search .form-control-feedback-end {

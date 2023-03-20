@@ -15,31 +15,29 @@
 </template>
   
 <script>
-import SpotifyWebApi from 'spotify-web-api-js';
+import api from '@/services/api';
 
 export default {
-    name: 'LoginView',
+    name: "LoginForm",
     data() {
         return {
-            email: '',
-            password: '',
+            email: "",
+            password: "",
         };
     },
     methods: {
-        async handleSubmit() {
-
-            const spotifyApi = new SpotifyWebApi();
-
-            const data = await spotifyApi.clientCredentialsGrant();
-
-            const accessToken = data.body['access_token'];
-
-            spotifyApi.setAccessToken(accessToken);
-
-            const response = await spotifyApi.searchTracks(this.email);
-
-            console.log(response);
+        handleSubmit() {
+            api.post('/me', {
+                email: this.email,
+                password: this.password,
+            })
+                .then((response) => {
+                    console.log(response);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
         },
     },
 };
-</script>  
+</script>
