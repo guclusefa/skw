@@ -1,7 +1,5 @@
 <template>
-  <section class="about">
-    <div class="about-container">
-      <h1>{{ $t("app.title", { test: "About" }) }}</h1>
-    </div>
+  <section class="container">
+      <h1>{{ $t("about.title") }}</h1>
   </section>
 </template>

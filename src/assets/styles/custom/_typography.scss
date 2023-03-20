@@ -1,0 +1,14 @@
+h1 {
+    text-transform: uppercase;
+    font-weight: 700;
+
+    &:before {
+        content: "";
+        display: inline-block;
+        background-color: $primary;
+        width: 50px;
+        height: 10px;
+        vertical-align: middle;
+        margin-right: 10px;
+    }
+}

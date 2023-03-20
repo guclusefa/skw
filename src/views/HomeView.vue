@@ -1,7 +1,5 @@
 <template>
-  <section class="home">
-    <div class="home-container">
-      <h1>This is a home page</h1>
-    </div>
+  <section class="container">
+      <h1>{{ $t("home.title") }}</h1>
   </section>
 </template>

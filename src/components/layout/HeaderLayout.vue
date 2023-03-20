@@ -18,18 +18,20 @@
             <RouterLink class="nav-item nav-link" :to="{ name: 'home' }" active-class="nav-active">
               {{ $t('routes.home') }}
             </RouterLink>
-          </div>
-          <!-- Nav middle -->
-          <div class="navbar-nav mx-lg-auto gap-2">
             <RouterLink class="nav-item nav-link" :to="{ name: 'about' }" active-class="nav-active">
               {{ $t('routes.about') }}
             </RouterLink>
+          </div>
+          <!-- Nav middle -->
+          <div class="navbar-nav mx-lg-auto gap-2">
+            <SearchField />
           </div>
           <!-- Nav right -->
           <div class="d-flex align-items-lg-center mt-3 mt-lg-0">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0  gap-2">
               <ThemeSwitcher />
               <LocaleSwitcher />
+              <AuthItem />
             </ul>
           </div>
         </div>
@@ -39,14 +41,18 @@
 </template>
 
 <script>
+import SearchField from '../fragments/SearchField.vue';
 import ThemeSwitcher from '../fragments/ThemeSwitcher.vue';
 import LocaleSwitcher from '../fragments/LocaleSwitcher.vue';
+import AuthItem from './AuthItem.vue';
 
 export default {
   name: 'HeaderLayout',
   components: {
+    SearchField,
     ThemeSwitcher,
     LocaleSwitcher,
+    AuthItem,
   },
 };
 </script>
@@ -85,7 +91,7 @@ export default {
 
 .nav-active {
   font-weight: 700;
-  color: $primary;
+  color: $primary !important;
 
   &:focus,
   &:hover {

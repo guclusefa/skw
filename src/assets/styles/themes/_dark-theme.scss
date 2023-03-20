@@ -1,177 +1,19 @@
 $bg-color: #131313;
 $bg-color-light: lighten($bg-color, 8%);
+
 $txt-color: #dddddd;
 $txt-color-light: lighten($txt-color, 20%);
 
 html.dark body {
     color-scheme: dark;
-    background-color: $bg-color !important;
+    background-color: $bg-color;
     color: $txt-color;
-
-    .border {
-        border-color: lighten($bg-color-light, 10%) !important;
-    }
-
-    .border-top {
-        border-color: lighten($bg-color-light, 10%) !important;
-    }
-
-    .border-end {
-        border-color: lighten($bg-color-light, 10%) !important;
-    }
-
-    .border-bottom {
-        border-color: lighten($bg-color-light, 10%) !important;
-    }
-
-    .border-start {
-        border-color: lighten($bg-color-light, 10%) !important;
-    }
-
-    .bg-dark {
-        background-color: $bg-color-light !important;
-        color: $txt-color !important;
-    }
-
-
-    .bg-dark {
-        background-color: lighten($bg-color, 10%) !important;
-        color: $txt-color !important;
-    }
-
-    .bg-light {
-        background-color: $bg-color-light !important;
-        color: $txt-color-light !important;
-    }
-
-    .dark-txt-white {
-        color: $txt-color !important;
-    }
-
-    .navbar {
-        background-color: $bg-color-light;
-        color: $txt-color-light;
-
-        .li-item {
-            a {
-                color: $txt-color-light !important;
-            }
-        }
-    }
-
-    .navbar-toggler {
-        color: $txt-color-light !important;
-    }
-
-    .navbar-toggler:hover {
-        color: $txt-color-light !important;
-    }
-
-    .nav-tabs {
-        border-color: $bg-color-light;
-    }
-
-    .nav-tabs .nav-link:hover,
-    .nav-tabs .nav-link:focus {
-        background-color: $bg-color-light;
-        color: $txt-color-light !important;
-        border-color: $bg-color-light;
-    }
-
-    .nav-tabs .nav-link.active,
-    .nav-tabs .nav-item.show .nav-link {
-        background-color: $bg-color-light;
-        color: $txt-color-light !important;
-        border-color: $bg-color-light;
-    }
-
-    @media (max-width: 1199px) {
-        .nav-item {
-            border-bottom: 1px solid lighten($bg-color-light, 10%);
-        }
-    }
-
-    .card {
-        background-color: lighten($bg-color-light, 10%) !important;
-        color: $txt-color !important;
-
-        .text-muted {
-            color: darken($txt-color, 10%) !important;
-        }
-
-        a {
-            color: $txt-color-light;
-        }
-
-        .link {
-            span {
-                color: $txt-color-light !important;
-            }
-
-            &:hover {
-                color: $txt-color-light !important;
-            }
-        }
-
-        /* 
-        h5 a {
-            color: $primary !important;
-        } */
-    }
-
-    .text-muted,
-    a {
-        color: $txt-color-light;
-    }
-
-    .dropdown-menu {
-        background-color: lighten($bg-color-light, 10%) !important;
-
-        .dropdown-item {
-            color: $txt-color-light;
-
-            &:hover {
-                background-color: $primary;
-            }
-        }
-    }
-
-    .modal-header {
-        border-color: lighten($bg-color-light, 10%);
-    }
-
-    .modal-body {
-        background-color: $bg-color-light;
-        color: $txt-color-light;
-    }
-
-    .offcanvas-body {
-        background-color: $bg-color-light;
-        color: $txt-color-light;
-    }
-
-    .table {
-        color: $txt-color-light;
-
-        .table-dark {
-            color: $txt-color-light;
-        }
-
-        tr:hover {
-            background-color: lighten($bg-color-light, 10%);
-
-            td,
-            th {
-                color: $txt-color-light;
-            }
-        }
-    }
 
     input,
     textarea {
         background-color: $bg-color-light;
-        color: $txt-color-light;
         border-color: lighten($bg-color-light, 10%);
+        color: $txt-color-light;
 
         &:focus {
             background-color: $bg-color-light;
@@ -181,133 +23,63 @@ html.dark body {
 
     select {
         background-color: $bg-color-light;
-        color: $txt-color-light;
         border-color: lighten($bg-color-light, 10%);
+        color: $txt-color-light;
 
-        option {
-            background-color: $bg-color-light;
-            color: $txt-color-light;
-        }
-
-        &:focus {
-            background-color: $bg-color-light;
-            color: $txt-color-light;
-        }
-
+        option,
+        &:focus,
+        &:active,
         &:hover {
             background-color: $bg-color-light;
             color: $txt-color-light;
         }
     }
 
-    .select2-container--bootstrap-5 .select2-selection {
-        border-color: lighten($bg-color-light, 10%);
+    .bg-dark {
+        background-color: lighten($bg-color, 10%);
+        color: $txt-color;
     }
 
-    .select2 {
+    .bg-light {
         background-color: $bg-color-light;
         color: $txt-color-light;
+    }
 
-        button {
-            background-color: $bg-color-light;
+    .navbar {
+        background-color: $bg-color-light;
+
+        a {
             color: $txt-color-light;
 
-            filter: invert(1);
+            &:hover {
+                color: $primary;
+            }
+        }
+
+        .navbar-toggler {
+            color: $txt-color-light;
+
+            &:hover {
+                color: $primary;
+            }
         }
     }
 
-    .select2-container--bootstrap-5.select2-container--focus .select2-selection,
-    .select2-container--bootstrap-5.select2-container--open .select2-selection {
+    .footer {
         background-color: $bg-color-light;
         color: $txt-color-light;
     }
 
-    .select2-container--bootstrap-5 .select2-selection {
-        background-color: $bg-color-light;
-        color: $txt-color-light;
+    .dropdown-menu {
+        background-color: lighten($bg-color-light, 10%);
 
-        option {
-            background-color: $bg-color-light;
+        .dropdown-item {
             color: $txt-color-light;
+
+            &:hover {
+                background-color: $primary;
+                color: lighten($bg-color-light, 10%);
+            }
         }
-
-        &:focus {
-            background-color: $bg-color-light;
-            color: $txt-color-light;
-        }
-
-        &:hover {
-            background-color: $bg-color-light;
-            color: $txt-color-light;
-        }
-
-        .select2-selection__rendered {
-            background-color: $bg-color-light;
-            color: $txt-color-light;
-        }
-    }
-
-    .select2-selection__choice__display {
-        background-color: $bg-color-light;
-        color: $txt-color-light;
-    }
-
-    .select2-results__options {
-        background-color: $bg-color-light;
-        color: $txt-color-light;
-    }
-
-    .select2-container--bootstrap-5.select2-container--open.select2-container--below .select2-selection {
-        background-color: $bg-color-light;
-        color: $txt-color-light;
-    }
-
-    .select2-container--bootstrap-5 .select2-selection--single .select2-selection__rendered .select2-selection__placeholder {
-        color: $txt-color-light;
-    }
-
-    .select2-container--bootstrap-5 .select2-dropdown .select2-search {
-        background-color: $bg-color-light;
-    }
-
-    .select2-container--bootstrap-5 .select2-dropdown .select2-search .select2-search__field {
-        border-color: lighten($bg-color-light, 10%);
-    }
-
-    .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__rendered .select2-selection__choice {
-        border-color: lighten($bg-color-light, 10%);
-    }
-
-    .select2-container--bootstrap-5 .select2-dropdown .select2-search .select2-search__field {
-        background-color: $bg-color-light;
-        color: $txt-color-light;
-    }
-
-    .ql-snow * {
-        color: $txt-color-light;
-    }
-
-    .ql-toolbar.ql-snow {
-        border-color: lighten($bg-color-light, 10%);
-    }
-
-    .ql-container.ql-snow {
-        border-color: lighten($bg-color-light, 10%);
-    }
-
-    .ql-snow .ql-stroke {
-        stroke: $txt-color-light !important;
-    }
-
-    .ql-snow .ql-picker-options {
-        background-color: darken($bg-color-light, 10%) !important;
-    }
-
-    .ql-editor.ql-blank::before {
-        color: $txt-color-light !important;
-    }
-
-    .ql-editor.ql-blank::before {
-        color: #4b4b4b !important;
     }
 }

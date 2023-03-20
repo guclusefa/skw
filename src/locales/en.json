@@ -1,9 +1,23 @@
 {
-    "routes": {
-        "home": "Home",
-        "about": "About"
-    },
     "app": {
         "title": "SKW"
+    },
+    "routes": {
+        "home": "Home",
+        "about": "About",
+        "login": "Login"
+    },
+    "home": {
+        "title": "Home"
+    },
+    "about": {
+        "title": "About"
+    },
+    "login": {
+        "title": "Login",
+        "username": "Username",
+        "password": "Password",
+        "submit": "Login",
+        "error": "Invalid username or password"
     }
 }
