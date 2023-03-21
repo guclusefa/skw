@@ -1,25 +1,22 @@
 {
     "app": {
-        "title": "SKW"
-    },
-    "routes": {
-        "home": "Home",
-        "about": "About",
-        "login": "Login",
-        "callback": "Callback",
-        "logout": "Logout"
+        "title": "SKW",
+        "description": "SKW Description",
+        "routes": {
+            "home": "Home",
+            "about": "About",
+            "login": "Login",
+            "callback": "Callback",
+            "logout": "Logout"
+        },
+        "search": {
+            "placeholder": "Search..."
+        }
     },
     "home": {
         "title": "Home"
     },
     "about": {
         "title": "About"
-    },
-    "login": {
-        "title": "Login",
-        "username": "Username",
-        "password": "Password",
-        "submit": "Login",
-        "error": "Invalid username or password"
     }
 }

@@ -6,7 +6,7 @@
             CTRL + /
             </span>
         </span>
-        <input type="text" class="form-control" placeholder="Search...">
+        <input type="text" class="form-control" :placeholder="$t('app.search.placeholder')" />
      </div>
 </template>
 

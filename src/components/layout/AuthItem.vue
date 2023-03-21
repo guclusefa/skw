@@ -1,7 +1,7 @@
 <template>
     <RouterLink class="nav-item nav-link btn-nav" :to="{ name: 'login' }" active-class="button-active"
         v-if="!isFullyLoggedIn">
-        {{ $t('routes.login') }}
+        {{ $t('app.routes.login') }}
     </RouterLink>
     <li class="nav-item dropdown" v-else>
         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
@@ -11,7 +11,7 @@
         <ul class="dropdown-menu">
             <li>
                 <RouterLink class="dropdown-item" :to="{ name: 'logout' }" active-class="button-active">
-                    {{ $t('routes.logout') }}
+                    {{ $t('app.routes.logout') }}
                 </RouterLink>
             </li>
         </ul>

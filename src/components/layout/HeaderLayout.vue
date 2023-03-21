@@ -16,7 +16,7 @@
           <!-- Nav left -->
           <div class="navbar-nav gap-2">
             <RouterLink class="nav-item nav-link" :to="{ name: 'about' }" active-class="nav-active">
-              {{ $t('routes.about') }}
+              {{ $t('app.routes.about') }}
             </RouterLink>
           </div>
           <!-- Nav middle -->
