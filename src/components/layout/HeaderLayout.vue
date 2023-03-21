@@ -15,9 +15,6 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <!-- Nav left -->
           <div class="navbar-nav gap-2">
-            <RouterLink class="nav-item nav-link" :to="{ name: 'home' }" active-class="nav-active">
-              {{ $t('routes.home') }}
-            </RouterLink>
             <RouterLink class="nav-item nav-link" :to="{ name: 'about' }" active-class="nav-active">
               {{ $t('routes.about') }}
             </RouterLink>

@@ -5,7 +5,9 @@
     "routes": {
         "home": "Home",
         "about": "About",
-        "login": "Login"
+        "login": "Login",
+        "callback": "Callback",
+        "logout": "Logout"
     },
     "home": {
         "title": "Home"

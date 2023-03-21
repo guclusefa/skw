@@ -3,7 +3,9 @@ import i18n from '../services/i18n.js'
 
 import HomeView from '../views/HomeView.vue'
 
-import LoginView from '../views/auth/LoginView.vue'
+import LoginAuth from '../components/auth/LoginAuth.vue'
+import CallbackAuth from '../components/auth/CallbackAuth.vue'
+import LogoutAuth from '../components/auth/LogoutAuth.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,9 +21,19 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue')
     },
     {
-      path: '/login',
+      path: '/auth/login',
       name: 'login',
-      component: LoginView
+      component: LoginAuth
+    },
+    {
+      path: '/auth/callback',
+      name: 'callback',
+      component: CallbackAuth
+    },
+    {
+      path: '/auth/logout',
+      name: 'logout',
+      component: LogoutAuth
     },
   ]
 })
@@ -29,7 +41,7 @@ const router = createRouter({
 // for each route change document title
 // change html lang to current language
 router.afterEach((to) => {
-  document.title = i18n.global.t(`routes.${to.name}`) + ' - ' + import.meta.env.VITE_APP_TITLE
+  document.title = import.meta.env.VITE_APP_TITLE + " - " + i18n.global.t(`routes.${to.name}`)
   document.documentElement.lang = i18n.global.locale
 })
 

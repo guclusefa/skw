@@ -33,6 +33,18 @@ export default {
                 this.$el.querySelector("input").focus();
             }
         });
+        // hide badge on focus
+        document.addEventListener("focusin", (e) => {
+            if (e.target.closest(".has-search")) {
+                this.$el.querySelector(".form-control-feedback-end").style.opacity = 0;
+            }
+        });
+        // show badge on blur
+        document.addEventListener("focusout", (e) => {
+            if (e.target.closest(".has-search")) {
+                this.$el.querySelector(".form-control-feedback-end").style.opacity = 0.5;
+            }
+        });
     },
 };
 </script>
