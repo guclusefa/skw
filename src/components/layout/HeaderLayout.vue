@@ -70,7 +70,6 @@ export default {
 .navbar-toggler {
   border: none;
   background-color: transparent;
-  color: $primary;
   font-size: 1.5rem;
 
   &:focus {
