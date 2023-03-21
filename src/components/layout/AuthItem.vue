@@ -1,8 +1,9 @@
 <template>
-    <RouterLink class="nav-item nav-link btn-nav" :to="{ name: 'login' }" active-class="button-active" v-if="!isLoggedIn">
+    <RouterLink class="nav-item nav-link btn-nav" :to="{ name: 'login' }" active-class="button-active"
+        v-if="!isFullyLoggedIn">
         {{ $t('routes.login') }}
     </RouterLink>
-    <li class="nav-item dropdown" v-if="isLoggedIn">
+    <li class="nav-item dropdown" v-else>
         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
             {{ user.display_name }}
             <img :src="user.images[0].url" class="avatar" alt="Avatar" v-if="user.images.length > 0" />
@@ -28,8 +29,8 @@ export default {
         }
     },
     computed: {
-        isLoggedIn() {
-            return this.auth.isLoggedIn
+        isFullyLoggedIn() {
+            return this.auth.isFullyLoggedIn
         },
         user() {
             return this.auth.user
