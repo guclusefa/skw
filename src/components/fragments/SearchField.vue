@@ -52,7 +52,7 @@ export default {
 <style scoped lang="scss">
 
 input:focus {
-    border:none;
+    border: 1px solid transparent;
 }
 
 .bg-dark {
