@@ -1,5 +1,5 @@
 <template>
-    <div class="card" style="width: 18rem;">
+    <div class="card">
         <img :src="user.images[0].url" class="card-img-top">
         <div class="card-body">
             <h5 class="card-title">{{ user.display_name }}</h5>
@@ -11,7 +11,7 @@
         </div>
     </div>
 </template>
-  
+
 <script>
 export default {
     name: "UserItem",

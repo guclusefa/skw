@@ -65,6 +65,24 @@ html.dark body {
         }
     }
 
+    .nav-tabs {
+        border-color: lighten($bg-color-light, 10%);
+        color: $txt-color-light;
+
+        .nav-item {
+            .nav-link {
+                color: $txt-color-light;
+
+                &.active,
+                &:hover {
+                    border-color: lighten($bg-color-light, 10%);
+                    background-color: $bg-color-light;
+                    color: $primary;
+                }
+            }
+        }
+    }
+
     .footer {
         background-color: $bg-color-light;
         color: $txt-color-light;
