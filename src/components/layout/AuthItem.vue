@@ -10,6 +10,11 @@
         </a>
         <ul class="dropdown-menu">
             <li>
+                <RouterLink class="dropdown-item" :to="{ name: 'me' }" active-class="button-active">
+                    {{ $t('app.routes.me') }}
+                </RouterLink>
+            </li>
+            <li>
                 <RouterLink class="dropdown-item" :to="{ name: 'logout' }" active-class="button-active">
                     {{ $t('app.routes.logout') }}
                 </RouterLink>

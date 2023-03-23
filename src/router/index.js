@@ -7,6 +7,8 @@ import LoginAuth from '../components/auth/LoginAuth.vue'
 import CallbackAuth from '../components/auth/CallbackAuth.vue'
 import LogoutAuth from '../components/auth/LogoutAuth.vue'
 
+import MeView from '../views/user/MeView.vue'
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -34,6 +36,11 @@ const router = createRouter({
       path: '/auth/logout',
       name: 'logout',
       component: LogoutAuth
+    },
+    {
+      path: '/me',
+      name: 'me',
+      component: MeView
     },
   ]
 })
