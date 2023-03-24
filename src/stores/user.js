@@ -4,12 +4,16 @@ import api from '../services/api';
 export const useUserStore = defineStore('user', {
     // state
     state: () => ({
+        currentlyPlaying: null,
         topTracks: null,
         topArtists: null,
-        topGenres: null,
     }),
     // actions
     actions: {
+        async getCurrentlyPlaying() {
+            const response = await api.get('/me/player/currently-playing');
+            this.currentlyPlaying = response.data;
+        },
         async getTopTracks() {
             const response = await api.get('/me/top/tracks', {
                 params: {

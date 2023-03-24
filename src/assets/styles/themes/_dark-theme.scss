@@ -72,7 +72,6 @@ html.dark body {
         .nav-item {
             .nav-link {
                 color: $txt-color-light;
-
                 &.active,
                 &:hover {
                     border-color: lighten($bg-color-light, 10%);
@@ -90,10 +89,9 @@ html.dark body {
 
     .dropdown-menu {
         background-color: lighten($bg-color-light, 10%);
+        color: $txt-color-light;
 
         .dropdown-item {
-            color: $txt-color-light;
-
             &:hover {
                 background-color: $primary;
                 color: lighten($bg-color-light, 10%);
@@ -104,20 +102,5 @@ html.dark body {
     .card {
         background-color: $bg-color-light;
         color: $txt-color-light;
-
-        .card-header {
-            background-color: $bg-color-light;
-            color: $txt-color-light;
-        }
-
-        .card-body {
-            background-color: $bg-color-light;
-            color: $txt-color-light;
-        }
-
-        .card-footer {
-            background-color: $bg-color-light;
-            color: $txt-color-light;
-        }
     }
 }
