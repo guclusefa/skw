@@ -36,9 +36,11 @@ export default {
                     const refresh_token = response.data.refresh_token
                     const expires_in = response.data.expires_in
                     this.auth.login(access_token, refresh_token, expires_in)
+                    this.$toast.success("You have successfully logged in.")
                 })
                 .catch(error => {
                     console.log(error)
+                    this.$toast.error("An error occurred while trying to log in, please try again.")
                 })
                 .finally(() => {
                     this.$router.push({ name: 'home' })

@@ -1,0 +1,9 @@
+.v-toast {
+    padding: 0;
+}
+
+.v-toast__item.v-toast__item--top-right,
+.v-toast__item.v-toast__item--bottom-right {
+    align-self: flex-end;
+    margin-right: 10px;
+}

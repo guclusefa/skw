@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useAuthStore } from '../stores/auth.js';
 import i18n from '../services/i18n.js'
+import toast from '../services/toast.js'
 
 import HomeView from '../views/HomeView.vue'
 
@@ -15,7 +16,8 @@ const checkAuth = (to, from, next) => {
   if (auth.isFullyLoggedIn) {
     next()
   } else {
-    next({ name: 'login' })
+    toast.error("You need to be logged in to access this page")
+    next({ name: 'home' })
   }
 }
 
