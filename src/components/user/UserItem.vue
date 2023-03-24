@@ -1,6 +1,6 @@
 <template>
     <div class="card">
-        <img :src="user.images[0].url" class="card-img-top">
+        <img :src="user.images[0].url" class="img-fluid object-fit-cover h-100">
         <div class="card-body">
             <h5 class="card-title">{{ user.display_name }}</h5>
             <p class="card-text">Country: {{ user.country }}</p>

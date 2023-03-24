@@ -36,16 +36,19 @@
                     <div class="tab-pane show active" id="currentlyplaying-tab-pane">
                         <div class="row row-cols-1 g-4">
                             <div class="col">
-                                <TrackCard :track="currentlyPlaying.item"
-                                    v-if="currentlyPlaying && currentlyPlaying.item" />
-                                <h5 v-else>No song is currently playing</h5>
+                                <div v-if="currentlyPlaying && currentlyPlaying.item">
+                                    <TrackPlayer :currentTrack="currentlyPlaying" />
+                                </div>
+                                <div v-else>
+                                    <h5>No song is currently playing</h5>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <!-- Top Tracks -->
                     <div class="tab-pane" id="toptracks-tab-pane">
                         <div class="row row-cols-1 g-4">
-                            <div class="col" v-for="track in topTracks" :key="track.id" :index="index">
+                            <div class="col" v-for="track in topTracks" :key="track.id">
                                 <TrackCard :track="track" />
                             </div>
                         </div>
@@ -69,6 +72,7 @@ import { useAuthStore } from '../../stores/auth';
 import { useUserStore } from '../../stores/user';
 
 import UserItem from '../../components/user/UserItem.vue';
+import TrackPlayer from '../../components/track/TrackPlayer.vue';
 import TrackCard from '../../components/track/TrackCard.vue';
 import ArtistCard from '../../components/artist/ArtistCard.vue';
 
@@ -101,14 +105,15 @@ export default {
         this.userStore.getTopTracks();
         this.userStore.getTopArtists();
     },
-    // get currently playing every 5 seconds
+    // get currently playing every second
     created() {
         setInterval(() => {
             this.userStore.getCurrentlyPlaying();
-        }, 5000);
+        }, 1000);
     },
     components: {
         UserItem,
+        TrackPlayer,
         TrackCard,
         ArtistCard,
     },

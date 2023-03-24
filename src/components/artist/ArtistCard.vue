@@ -1,6 +1,6 @@
 <template>
     <div class="card">
-        <img :src="artist.images[0].url" class="card-img-top">
+        <img :src="artist.images[0].url" class="img-fluid object-fit-cover h-100">
         <div class="card-body">
             <h5 class="card-title">{{ artist.name }}</h5>
             <p class="card-text">Genres: {{ artist.genres.join(", ") }}</p>

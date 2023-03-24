@@ -1,27 +1,19 @@
 <template>
-<!--     <div class="card">
-        <img :src="track.album.images[0].url" class="card-img-top">
-        <div class="card-body">
-            <h5 class="card-title">{{ track.name }}</h5>
-            <p class="card-text">Artist: {{ track.album.artists[0].name }}</p>
-            <p class="card-text">Album: {{ track.album.name }}</p>
-            <p class="card-text">Release Date: {{ track.album.release_date }}</p>
-            <p class="card-text">Duration: {{ formatDuration(track.duration_ms) }}</p>
-            <div class="d-flex gap-2">
-                <a :href="track.external_urls.spotify" class="btn btn-primary" target="_blank">Go to Spotify</a>
-                <a :href="track.uri" class="btn btn-outline-primary" target="_blank">Go to Spotify URI</a>
-            </div>
-        </div>
-    </div> -->
-
     <div class="card">
         <div class="row g-0">
-            <div class="col-md-4">
-                <img :src="track.album.images[0].url" class="img-fluid rounded-start">
+            <div class="col-4">
+                <img :src="track.album.images[0].url" class="img-fluid object-fit-cover h-100 rounded-start">
             </div>
-            <div class="col-md-8">
+            <div class="col-8">
                 <div class="card-body">
-                    <h5 class="card-title">{{ track.name }}</h5>
+                    <div class="d-flex align-items-center gap-2">
+                        <h5 class="card-title">
+                            {{ track.name }}
+                        </h5>
+                        <span class="badge bg-dark" v-if="track.explicit">
+                            Explicit
+                        </span>
+                    </div>
                     <p class="card-text">Artist: {{ track.album.artists[0].name }}</p>
                     <p class="card-text">Album: {{ track.album.name }}</p>
                     <p class="card-text">Release Date: {{ track.album.release_date }}</p>
