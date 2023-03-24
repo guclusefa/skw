@@ -6,6 +6,8 @@ import router from './router'
 // Services
 import i18n from './services/i18n'
 import toast from './services/toast'
+// Plugins
+import ToastPlugin from 'vue-toast-notification'
 // Libs
 import "bootstrap"
 import "bootstrap/dist/css/bootstrap.min.css"
@@ -19,7 +21,8 @@ app.use(createPinia())
 app.use(router)
 // Services
 app.use(i18n)
-app.use(toast)
+// Plugins
+app.use(ToastPlugin)
 // Global properties
 app.config.globalProperties.$toast = toast
 // Mount

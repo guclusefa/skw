@@ -30,15 +30,15 @@ export default {
     name: "AuthItem",
     data() {
         return {
-            auth: useAuthStore()
+            authStore: useAuthStore()
         }
     },
     computed: {
         isFullyLoggedIn() {
-            return this.auth.isFullyLoggedIn
+            return this.authStore.isFullyLoggedIn
         },
         user() {
-            return this.auth.user
+            return this.authStore.user
         }
     }
 };

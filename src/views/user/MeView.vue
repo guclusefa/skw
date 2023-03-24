@@ -6,28 +6,35 @@
                 <UserItem :user="user" />
             </div>
             <div class="col-lg-8 col-md-12 mt-4 mt-lg-0">
-
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
-                            type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Home</button>
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#toptracks-tab-pane" aria-current="page">
+                            Top Tracks
+                        </button>
                     </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane"
-                            type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Profile</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane"
-                            type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Contact</button>
+                    <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#topartists-tab-pane">
+                            Top Artists
+                        </button>
                     </li>
                 </ul>
                 <div class="tab-content mt-2" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
-                        tabindex="0"> {{ user }}</div>
-                    <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
-                        tabindex="0">...</div>
-                    <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab"
-                        tabindex="0">...</div>
+                    <div class="tab-pane show active" id="toptracks-tab-pane">
+                        <!-- {{ topTracks }} -->
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 col-sm-12" v-for="track in topTracks" :key="track.id">
+                                <TrackCard :track="track" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="topartists-tab-pane">
+                        <!-- {{ topArtists }} -->
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 col-sm-12" v-for="artist in topArtists" :key="artist.id">
+                                <ArtistCard :artist="artist" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -36,22 +43,39 @@
 
 <script>
 import { useAuthStore } from '../../stores/auth';
+import { useUserStore } from '../../stores/user';
+
 import UserItem from '../../components/user/UserItem.vue';
+import TrackCard from '../../components/track/TrackCard.vue';
+import ArtistCard from '../../components/artist/ArtistCard.vue';
 
 export default {
     name: "MeView",
     data() {
         return {
-            auth: useAuthStore()
+            authStore: useAuthStore(),
+            userStore: useUserStore(),
         }
     },
     computed: {
         user() {
-            return this.auth.user
+            return this.authStore.user
+        },
+        topTracks() {
+            return this.userStore.topTracks
+        },
+        topArtists() {
+            return this.userStore.topArtists
         }
     },
+    mounted() {
+        this.userStore.getTopTracks();
+        this.userStore.getTopArtists();
+    },
     components: {
-        UserItem
+        UserItem,
+        TrackCard,
+        ArtistCard,
     },
 };
 </script>

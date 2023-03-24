@@ -1,7 +1,5 @@
 <template>
-    <div>
-        <h1>test callbackc</h1>
-    </div>
+    <div></div>
 </template>
 
 <script>
@@ -11,12 +9,13 @@ export default {
     name: 'LogoutAuth',
     data() {
         return {
-            auth: useAuthStore()
+            authStore: useAuthStore()
         }
     },
     methods: {
         logout() {
-            this.auth.logout()
+            // logout
+            this.authStore.logout()
             // toast
             this.$toast.success('You have been logged out')
             // redirect to home

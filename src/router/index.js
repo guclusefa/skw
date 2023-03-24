@@ -14,8 +14,8 @@ import LogoutAuth from '../components/auth/LogoutAuth.vue'
 import MeView from '../views/user/MeView.vue'
 
 const checkAuth = (to, from, next) => {
-  const auth = useAuthStore()
-  if (auth.isFullyLoggedIn) {
+  const authStore = useAuthStore()
+  if (authStore.isFullyLoggedIn) {
     next()
   } else {
     toast.error("You need to be logged in to access this page")
