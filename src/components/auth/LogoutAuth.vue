@@ -17,6 +17,8 @@ export default {
     methods: {
         logout() {
             this.auth.logout()
+            // toast
+            this.$toast.success('You have been logged out')
             // redirect to home
             this.$router.push({ name: 'home' })
         }
