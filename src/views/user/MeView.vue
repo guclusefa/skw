@@ -5,7 +5,7 @@
             <div class="col-lg-4 col-md-12">
                 <UserItem :user="user" />
             </div>
-            <div class="col-lg-8 col-md-12">
+            <div class="col-lg-8 col-md-12 mt-4 mt-lg-0">
 
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
@@ -21,7 +21,7 @@
                             type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Contact</button>
                     </li>
                 </ul>
-                <div class="tab-content" id="myTabContent">
+                <div class="tab-content mt-2" id="myTabContent">
                     <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
                         tabindex="0">                {{ user }}</div>
                     <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"

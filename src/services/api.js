@@ -21,4 +21,29 @@ api.interceptors.request.use(
     }
 );
 
+// Add a response interceptor to refresh the access token if it has expired
+api.interceptors.response.use(
+    function (response) {
+        return response;
+    },
+
+    function (error) {
+        const originalRequest = error.config;
+        const auth = useAuthStore();
+        if (error.response.status === 401 && auth.isLoggedIn && !originalRequest._retry) {
+            originalRequest._retry = true;
+            return auth.refreshToken()
+                .then(() => {
+                    api.defaults.headers.common['Authorization'] = 'Bearer ' + auth.access_token;
+                    return api(originalRequest);
+                })
+                .catch(() => {
+                    auth.logout();
+                    return Promise.reject(error);
+                });
+        }
+        return Promise.reject(error);
+    }
+);
+
 export default api;

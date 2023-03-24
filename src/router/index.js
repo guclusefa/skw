@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { useAuthStore } from '../stores/auth.js';
 import i18n from '../services/i18n.js'
 
 import HomeView from '../views/HomeView.vue'
@@ -9,8 +10,17 @@ import LogoutAuth from '../components/auth/LogoutAuth.vue'
 
 import MeView from '../views/user/MeView.vue'
 
+const checkAuth = (to, from, next) => {
+  const auth = useAuthStore()
+  if (auth.isFullyLoggedIn) {
+    next()
+  } else {
+    next({ name: 'login' })
+  }
+}
+
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(import.meta.env.VITE_APP_BASE_URL),
   routes: [
     {
       path: '/',
@@ -40,7 +50,8 @@ const router = createRouter({
     {
       path: '/me',
       name: 'me',
-      component: MeView
+      component: MeView,
+      beforeEnter: checkAuth
     },
   ]
 })

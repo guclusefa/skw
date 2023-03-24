@@ -7,7 +7,10 @@
             <p class="card-text">Email: {{ user.email }}</p>
             <p class="card-text">Product: {{ user.product }}</p>
             <p class="card-text">Followers: {{ user.followers.total }}</p>
-            <a :href="user.external_urls.spotify" class="btn btn-primary" target="_blank">Go to Spotify</a>
+            <div class="d-flex gap-2">
+                <a :href="user.external_urls.spotify" class="btn btn-primary" target="_blank">Go to Spotify</a>
+                <a :href="user.uri" class="btn btn-outline-primary" target="_blank">Go to Spotify URI</a>
+            </div>
         </div>
     </div>
 </template>
