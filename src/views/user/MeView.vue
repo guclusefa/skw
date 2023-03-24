@@ -8,7 +8,8 @@
             <div class="col-lg-8 col-md-12 mt-4 mt-lg-0">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#toptracks-tab-pane" aria-current="page">
+                        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#toptracks-tab-pane"
+                            aria-current="page">
                             Top Tracks
                         </button>
                     </li>
@@ -20,16 +21,34 @@
                 </ul>
                 <div class="tab-content mt-2" id="myTabContent">
                     <div class="tab-pane show active" id="toptracks-tab-pane">
-                        <!-- {{ topTracks }} -->
                         <div class="row">
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>Short Term</option>
+                                    <option value="1">Medium Term</option>
+                                    <option value="2">Long Term</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- {{ topTracks }} -->
+                        <div class="row mt-2">
                             <div class="col-lg-4 col-md-6 col-sm-12" v-for="track in topTracks" :key="track.id">
                                 <TrackCard :track="track" />
                             </div>
                         </div>
                     </div>
                     <div class="tab-pane" id="topartists-tab-pane">
-                        <!-- {{ topArtists }} -->
                         <div class="row">
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>Short Term</option>
+                                    <option value="1">Medium Term</option>
+                                    <option value="2">Long Term</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- {{ topArtists }} -->
+                        <div class="row mt-2">
                             <div class="col-lg-4 col-md-6 col-sm-12" v-for="artist in topArtists" :key="artist.id">
                                 <ArtistCard :artist="artist" />
                             </div>
