@@ -4,7 +4,7 @@
         <div class="card-body">
             <h5 class="card-title">{{ user.display_name }}</h5>
             <p class="card-text">Country: {{ user.country }}</p>
-            <p class="card-text">Email: {{ user.email }}</p>
+<!--             <p class="card-text">Email: {{ user.email }}</p> -->
             <p class="card-text">Product: {{ user.product }}</p>
             <p class="card-text">Followers: {{ user.followers.total }}</p>
             <div class="d-flex gap-2">

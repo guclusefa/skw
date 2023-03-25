@@ -45,20 +45,23 @@ export default {
             const elements = document
                 .getElementById("lyrics-body")
                 .getElementsByClassName("card-text");
-            // Loop through lyrics and add text-primary class if id is less than progressMs
-            for (let i = 0; i < elements.length; i++) {
-                const id = elements[i].id;
-                if (id < progressMs) {
-                    elements[i].classList.add("text-primary");
-                } else {
-                    elements[i].classList.remove("text-primary");
-                }
-            }
+            // get all elements where id is less than progressMs
+            const elementsToHighlight = Array.from(elements).filter(
+                (element) => element.id <= progressMs
+            );
+            // remove highlight from all elements
+            Array.from(elements).forEach((element) => {
+                element.classList.remove("highlighted");
+            });
+            // add highlight to elementsToHighlight
+            elementsToHighlight.forEach((element) => {
+                element.classList.add("highlighted");
+            });
         },
         handleOnLyricsClick(id) {
-            // Toggle bg-dark and text-primary classes
+            // Toggle highlight on lyrics line
             const element = document.getElementById(id);
-            element.classList.toggle("bg-dark");
+            element.classList.toggle("selected");
             // Toggle selectedLines array
             this.selectedLines = this.selectedLines.includes(id)
                 ? this.selectedLines.filter((line) => line !== id)
@@ -129,6 +132,14 @@ export default {
     &:hover {
         cursor: pointer;
         color: $primary;
+    }
+
+    &.highlighted {
+        color: $primary;
+    }
+
+    &.selected {
+        color: darken($primary, 20%);   
     }
 }
 </style>
