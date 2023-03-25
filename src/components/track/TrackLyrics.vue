@@ -1,8 +1,6 @@
 <template>
-    <div>
-        <button class="btn btn-primary" :disabled="this.selectedLines.length === 0" @click="handleOnSubmitClick">
-            Generate Lyrics Card
-        </button>
+    <div v-if="lyricsCard !== null">
+        <TrackLyricsCard :lyricsCard="lyricsCard" />
     </div>
     <div class="card" id="lyrics-container">
         <div class="card-body" id="lyrics-body">
@@ -15,6 +13,8 @@
 </template>
 
 <script>
+import TrackLyricsCard from "./TrackLyricsCard.vue";
+
 export default {
     name: "TrackLyrics",
     props: {
@@ -29,7 +29,8 @@ export default {
     },
     data() {
         return {
-            selectedLines: []
+            selectedLines: [],
+            lyricsCard: null
         }
     },
     methods: {
@@ -57,9 +58,10 @@ export default {
             element.classList.toggle("bg-dark");
             // add to the selectedLines array the id of the element or remove it if it already has it
             this.selectedLines = this.selectedLines?.includes(id) ? this.selectedLines.filter(line => line !== id) : [...this.selectedLines, id];
-        },
-        handleOnSubmitClick(){
+
+            //////
             if (this.selectedLines.length === 0) {
+                this.lyricsCard = null;
                 return;
             }
             // order the selectedLines array by id
@@ -73,11 +75,14 @@ export default {
                 const element = document.getElementById(line);
                 trackLyrics.push(element.innerText);
             });
-            console.log(trackLyrics);
-            console.log(trackName);
-            console.log(trackArtistName);
-            console.log(trackImage);
-        }
+            const lyricsCard = {
+                trackLyrics,
+                trackName,
+                trackArtistName,
+                trackImage
+            };
+            this.lyricsCard = lyricsCard;
+        },
     },
     mounted() {
         // every 100ms check if the currentTrack has changed
@@ -86,6 +91,9 @@ export default {
                 this.hoverLyrics(this.currentTrack);
             }
         }, 1000);
+    },
+    components: {
+        TrackLyricsCard
     }
 };
 </script>
