@@ -39,18 +39,18 @@
 
       <div class="d-flex flex-column flex-sm-row justify-content-between py-4 border-top mt-4 mt-md-0">
         <p>© 2022 Company, Inc. All rights reserved.</p>
-        <ul class="list-unstyled d-flex">
-          <li class="ms-3">
+        <ul class="list-unstyled d-flex gap-3">
+          <li>
             <a class="link-dark" href="#">
               <i class="bi bi-twitter"></i>
             </a>
           </li>
-          <li class="ms-3">
+          <li>
             <a class="link-dark" href="#">
               <i class="bi bi-instagram"></i>
             </a>
           </li>
-          <li class="ms-3"><a class="link-dark" href="#">
+          <li><a class="link-dark" href="#">
               <i class="bi bi-facebook"></i>
             </a>
           </li>

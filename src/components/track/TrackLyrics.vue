@@ -1,14 +1,22 @@
 <template>
-    <div v-if="lyricsCard">
-        <TrackLyricsCard :lyricsCard="lyricsCard" />
-    </div>
-    <div class="card" id="lyrics-container" v-if="lyrics">
-        <div class="card-body" id="lyrics-body">
-            <p class="card-text" v-for="line in lyrics.lines" :key="line.startTimeMs" :id="line.startTimeMs"
-                @click="handleOnLyricsClick(line.startTimeMs)">
-                {{ line.words }}
-            </p>
-        </div>
+    <div class="row">
+ 
+            <div class="col-xl-7">
+                <div class="card" id="lyrics-container" v-if="lyrics">
+                    <div class="card-body" id="lyrics-body">
+                        <p class="card-text" v-for="line in lyrics.lines" :key="line.startTimeMs" :id="line.startTimeMs"
+                            @click="handleOnLyricsClick(line.startTimeMs)">
+                            {{ line.words }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-5 mt-3 mt-xl-0">
+                <div v-if="lyricsCard">
+                    <TrackLyricsCard :lyricsCard="lyricsCard" />
+                </div>
+            </div>
+  
     </div>
 </template>
   
@@ -56,6 +64,13 @@ export default {
             // add highlight to elementsToHighlight
             elementsToHighlight.forEach((element) => {
                 element.classList.add("highlighted");
+                // if last, got to # (only in context of lyrics-container)
+                const container = document.getElementById("lyrics-container");
+                if (element === elementsToHighlight[elementsToHighlight.length - 1]) {
+                    container.scrollTop = element.offsetTop;
+                    // scrool behavior is smooth
+                    container.style.scrollBehavior = "smooth";
+                }
             });
         },
         handleOnLyricsClick(id) {
@@ -112,11 +127,11 @@ export default {
     watch: {
         // Watch for changes in track id
         "track.item.id": function (newVal) {
-            // Get lyrics for new track
-            this.trackStore.getLyrics(newVal);
             // Reset selected lines and lyricsCard
             this.selectedLines = [];
             this.lyricsCard = null;
+            // Get lyrics for new track
+            this.trackStore.getLyrics(newVal);
         }
     },
     components: {
@@ -126,6 +141,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.card {
+    height: 350px;
+    overflow-y: scroll;
+}
+
 .card-text {
     font-size: 1.2rem;
 

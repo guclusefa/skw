@@ -103,4 +103,9 @@ html.dark body {
         background-color: $bg-color-light;
         color: $txt-color-light;
     }
+
+    .progress {
+        background-color: lighten($bg-color-light, 10%);
+        color: $txt-color-light;
+    }
 }
