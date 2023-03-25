@@ -135,11 +135,11 @@ export default {
     }
 
     &.highlighted {
-        color: $primary;
+        color: darken($primary, 20%);
     }
 
     &.selected {
-        color: darken($primary, 20%);   
+        color: $primary;
     }
 }
 </style>

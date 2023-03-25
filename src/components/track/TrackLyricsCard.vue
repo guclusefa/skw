@@ -14,10 +14,19 @@
                 </p>
             </div>
         </div>
+        <div class="lyrics-footer">
+            <p>Created using SKW</p>
+        </div>
+    </div>
+    <div class="mt-3 d-flex justify-content-end">
+        <button class="btn btn-outline-primary" @click="downloadLyricsCard()">
+            <i class="bi bi-download fs-5"></i>
+        </button>
     </div>
 </template>
 <script>
 import ColorThief from "colorthief";
+import html2canvas from "html2canvas";
 
 export default {
     name: "TrackLyricsCard",
@@ -42,6 +51,25 @@ export default {
                 // set border color to the lyrics header to white or black depending on the dominant color
                 document.querySelector(".lyrics-header").style.borderColor = color[0] + color[1] + color[2] > 382 ? "#000" : "#fff";
             };
+        },
+        downloadLyricsCard() {
+            // set the lyrics footer to display block to show the footer
+            document.querySelector(".lyrics-footer").style.display = "block";
+            const lyricsCardE = document.querySelector(".lyrics-card");
+            const fileName = `${this.lyricsCard.trackName} - ${this.lyricsCard.trackArtistName}.png`;
+            html2canvas(lyricsCardE, {
+                useCORS: true,
+                allowTaint: true,
+                backgroundColor: null,
+                scale: 2,
+            }).then(function (canvas) {
+                const link = document.createElement("a");
+                link.download = fileName;
+                link.href = canvas.toDataURL();
+                link.click();
+            });
+            // set the lyrics footer to display none to hide the footer
+            document.querySelector(".lyrics-footer").style.display = "none";
         }
     },
     mounted() {
@@ -84,6 +112,12 @@ export default {
 
 .lyrics-body {
     padding: 20px;
+}
+
+.lyrics-footer {
+    padding: 0 20px 1px 20px;
+    font-size: 12px;
+    display: none;
 }
 
 .lyrics-text p {
