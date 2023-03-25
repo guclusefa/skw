@@ -9,8 +9,13 @@ export const useTrackStore = defineStore('track', {
     // actions
     actions: {
         async getLyrics(trackId) {
-            const response = await axios.get(`https://spotify-lyric-api.herokuapp.com/?trackid=${trackId}`);
-            this.trackLyrics = response.data;
+            try {
+                const response = await axios.get(`https://spotify-lyric-api.herokuapp.com/?trackid=${trackId}`);
+                this.trackLyrics = response.data;
+            } catch (error) {
+                console.log(error);
+                this.trackLyrics = null;
+            }
         },
     },
 });

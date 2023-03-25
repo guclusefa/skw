@@ -37,9 +37,8 @@
                         <div class="row row-cols-1 g-4">
                             <div class="col">
                                 <div class="d-flex flex-column gap-3" v-if="currentlyPlaying && currentlyPlaying.item">
-                                    <TrackPlayer :currentTrack="currentlyPlaying" />
-                                    <TrackLyrics :currentTrack="currentlyPlaying" :lyrics="currentlyPlayingLyrics"
-                                        v-if="currentlyPlayingLyrics" />
+                                    <TrackPlayer :track="currentlyPlaying" />
+                                    <TrackLyrics :track="currentlyPlaying" />
                                 </div>
                                 <div v-else>
                                     <h5>No song is currently playing</h5>
@@ -72,7 +71,6 @@
 <script>
 import { useAuthStore } from '../../stores/auth';
 import { useUserStore } from '../../stores/user';
-import { useTrackStore } from '../../stores/track';
 
 import UserItem from '../../components/user/UserItem.vue';
 import TrackPlayer from '../../components/track/TrackPlayer.vue';
@@ -86,7 +84,6 @@ export default {
         return {
             authStore: useAuthStore(),
             userStore: useUserStore(),
-            trackStore: useTrackStore(),
         }
     },
     computed: {
@@ -96,9 +93,6 @@ export default {
         currentlyPlaying() {
             return this.userStore.currentlyPlaying
         },
-        currentlyPlayingLyrics() {
-            return this.trackStore.trackLyrics
-        },
         topTracks() {
             return this.userStore.topTracks
         },
@@ -107,26 +101,13 @@ export default {
         }
     },
     mounted() {
-        this.userStore.getCurrentlyPlaying().then(() => {
-            if (this.currentlyPlaying && this.currentlyPlaying.item) {
-                this.trackStore.getLyrics(this.currentlyPlaying.item.id);
-            }
-        });
+        this.userStore.getCurrentlyPlaying();
         this.userStore.getTopTracks();
         this.userStore.getTopArtists();
     },
-    // get currently playing every second
     created() {
         setInterval(() => {
-            this.userStore.getCurrentlyPlaying().then(() => {
-                // if empty or different track set to null
-                if (!this.currentlyPlaying || !this.currentlyPlaying.item) {
-                    this.trackStore.trackLyrics = null;
-                }
-                if (this.currentlyPlaying && this.currentlyPlaying.item && this.currentlyPlaying.item.id !== this.trackStore.trackLyrics.id) {
-                    this.trackStore.getLyrics(this.currentlyPlaying.item.id);
-                }
-            });
+            this.userStore.getCurrentlyPlaying();
         }, 1000);
     },
     components: {
