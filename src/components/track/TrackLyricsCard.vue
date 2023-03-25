@@ -21,13 +21,15 @@
             </p>
         </div>
     </div>
-    <div class="mt-3 d-flex justify-content-end gap-2">
-        <button class="btn btn-outline-primary" @click="shareLyricsCard('twitter')">
-            <i class="bi bi-twitter fs-5"></i>
-        </button>
-        <button class="btn btn-outline-primary" @click="downloadLyricsCard()">
-            <i class="bi bi-download fs-5"></i>
-        </button>
+    <div class="d-flex justify-content-between mt-3">
+        <div class="d-flex gap-2">
+            <button class="btn btn-outline-primary" @click="downloadLyricsCard()">
+                <i class="bi bi-download fs-5"></i>
+            </button>
+            <button class="btn btn-outline-primary" @click="shareLyricsCard('twitter')">
+                <i class="bi bi-twitter fs-5"></i>
+            </button>
+        </div>
     </div>
 </template>
 <script>

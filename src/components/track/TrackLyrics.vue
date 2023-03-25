@@ -1,22 +1,34 @@
 <template>
-    <div class="row">
- 
-            <div class="col-xl-7">
-                <div class="card" id="lyrics-container" v-if="lyrics">
-                    <div class="card-body" id="lyrics-body">
-                        <p class="card-text" v-for="line in lyrics.lines" :key="line.startTimeMs" :id="line.startTimeMs"
-                            @click="handleOnLyricsClick(line.startTimeMs)">
-                            {{ line.words }}
-                        </p>
-                    </div>
+    <div class="row" v-if="lyrics">
+        <div class="col-xl-7">
+            <div class="card" id="lyrics-container">
+                <div class="card-body" id="lyrics-body">
+                    <p class="card-text" v-for="line in lyrics.lines" :key="line.startTimeMs" :id="line.startTimeMs"
+                        @click="handleOnLyricsClick(line.startTimeMs)">
+                        {{ line.words }}
+                    </p>
                 </div>
             </div>
-            <div class="col-xl-5 mt-3 mt-xl-0">
-                <div v-if="lyricsCard">
-                    <TrackLyricsCard :lyricsCard="lyricsCard" />
+            <div class="d-flex justify-content-between gap-2 mt-2">
+                <div class="d-flex gap-2">
+                    <button class="btn btn-outline-danger" @click="clearLyricsCard()">
+                        <i class="bi bi-x fs-5"></i>
+                    </button>
+                    <button class="btn" @click="fixLyrics = !fixLyrics"
+                        :class="fixLyrics ? 'btn-primary' : 'btn-outline-primary'">
+                        <i class="bi bi-arrow-down-up fs-5"></i>
+                    </button>
+                </div>
+                <div class="d-flex gap-2 flex-grow-1 justify-content-end">
+                    <input type="text" class="form-control" placeholder="Search lyrics..." v-model="searchLyrics" />
                 </div>
             </div>
-  
+        </div>
+        <div class="col-xl-5 mt-3 mt-xl-0">
+            <div v-if="lyricsCard">
+                <TrackLyricsCard :lyricsCard="lyricsCard" />
+            </div>
+        </div>
     </div>
 </template>
   
@@ -38,7 +50,9 @@ export default {
             trackStore: useTrackStore(),
 
             lyricsCard: null,
-            selectedLines: []
+            selectedLines: [],
+            fixLyrics: false,
+            searchLyrics: ""
         };
     },
     computed: {
@@ -57,16 +71,12 @@ export default {
             const elementsToHighlight = Array.from(elements).filter(
                 (element) => element.id <= progressMs
             );
-            // remove highlight from all elements
-            Array.from(elements).forEach((element) => {
-                element.classList.remove("highlighted");
-            });
             // add highlight to elementsToHighlight
             elementsToHighlight.forEach((element) => {
                 element.classList.add("highlighted");
-                // if last, got to # (only in context of lyrics-container)
-                const container = document.getElementById("lyrics-container");
-                if (element === elementsToHighlight[elementsToHighlight.length - 1]) {
+                if (!this.fixLyrics) {
+                    // if fixLyrics, scroll to first element
+                    const container = document.getElementById("lyrics-container");
                     container.scrollTop = element.offsetTop;
                     // scrool behavior is smooth
                     container.style.scrollBehavior = "smooth";
@@ -110,7 +120,21 @@ export default {
                     trackImage
                 };
             }
-        }
+        },
+        clearLyricsCard() {
+            // Clear lyricsCard
+            this.lyricsCard = null;
+            this.selectedLines = [];
+            // remove selected from all elements
+            const elements = document
+                .getElementById("lyrics-body")
+                .getElementsByClassName("card-text");
+            if (elements) {
+                Array.from(elements).forEach((element) => {
+                    element.classList.remove("selected");
+                });
+            }
+        },
     },
     mounted() {
         // Get lyrics for track
@@ -128,8 +152,7 @@ export default {
         // Watch for changes in track id
         "track.item.id": function (newVal) {
             // Reset selected lines and lyricsCard
-            this.selectedLines = [];
-            this.lyricsCard = null;
+            this.clearLyricsCard();
             // Get lyrics for new track
             this.trackStore.getLyrics(newVal);
         }
@@ -160,6 +183,8 @@ export default {
 
     &.selected {
         color: $primary;
+        background-color: #00000020;
+        border-radius: 5px;
     }
 }
 </style>
