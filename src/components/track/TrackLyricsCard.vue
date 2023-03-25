@@ -17,6 +17,8 @@
     </div>
 </template>
 <script>
+import ColorThief from "colorthief";
+
 export default {
     name: "TrackLyricsCard",
     props: {
@@ -25,11 +27,30 @@ export default {
             required: true,
         },
     },
+    methods: {
+        getDominantColor() {
+            const img = new Image();
+            img.src = this.lyricsCard.trackImage;
+            img.crossOrigin = "Anonymous";
+            img.onload = () => {
+                const colorThief = new ColorThief();
+                const color = colorThief.getColor(img);
+                // set the background color of the lyrics card to the dominant color of the track image
+                document.querySelector(".lyrics-card").style.backgroundColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
+                // set the color of the lyrics text to white or black depending on the dominant color and set to !important to override the bootstrap class
+                document.querySelector(".lyrics-card").style.color = color[0] + color[1] + color[2] > 382 ? "#000" : "#fff";
+                // set border color to the lyrics header to white or black depending on the dominant color
+                document.querySelector(".lyrics-header").style.borderColor = color[0] + color[1] + color[2] > 382 ? "#000" : "#fff";
+            };
+        }
+    },
+    mounted() {
+        this.getDominantColor();
+    }
 };
 </script>
 <style>
 .lyrics-card {
-    background-color: black;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -37,7 +58,8 @@ export default {
     display: flex;
     align-items: center;
     padding: 20px;
-    border-bottom: 1px solid #f2f2f2;
+    border-bottom: 1px solid;
+    border-color: rgba(0, 0, 0, 0.125);
 }
 
 .lyrics-header img {
@@ -58,7 +80,6 @@ export default {
     font-size: 16px;
     font-weight: 400;
     line-height: 1.2;
-    color: #999;
 }
 
 .lyrics-body {

@@ -38,7 +38,8 @@
                             <div class="col">
                                 <div class="d-flex flex-column gap-3" v-if="currentlyPlaying && currentlyPlaying.item">
                                     <TrackPlayer :currentTrack="currentlyPlaying" />
-                                    <TrackLyrics :currentTrack="currentlyPlaying" :lyrics="currentlyPlayingLyrics" v-if="currentlyPlayingLyrics" />
+                                    <TrackLyrics :currentTrack="currentlyPlaying" :lyrics="currentlyPlayingLyrics"
+                                        v-if="currentlyPlayingLyrics" />
                                 </div>
                                 <div v-else>
                                     <h5>No song is currently playing</h5>
@@ -118,6 +119,10 @@ export default {
     created() {
         setInterval(() => {
             this.userStore.getCurrentlyPlaying().then(() => {
+                // if empty or different track set to null
+                if (!this.currentlyPlaying || !this.currentlyPlaying.item) {
+                    this.trackStore.trackLyrics = null;
+                }
                 if (this.currentlyPlaying && this.currentlyPlaying.item && this.currentlyPlaying.item.id !== this.trackStore.trackLyrics.id) {
                     this.trackStore.getLyrics(this.currentlyPlaying.item.id);
                 }
