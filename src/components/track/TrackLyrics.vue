@@ -62,6 +62,8 @@ export default {
     },
     methods: {
         highlightLyrics(track) {
+            // if dom not ready, return
+            if (!document.getElementById("lyrics-body")) return;
             // Highlight lyrics based on track progress
             const progressMs = track.progress_ms;
             const elements = document
@@ -103,6 +105,7 @@ export default {
         },
         generateLyricsCard() {
             // Create lyricsCard object
+            const trackId = this.track.item.id;
             const trackLyrics = [];
             const trackName = this.track.item.name;
             const trackArtistName = this.track.item.artists[0].name;
@@ -114,6 +117,7 @@ export default {
             // Only create lyricsCard if there are selected lines
             if (this.selectedLines.length > 0) {
                 this.lyricsCard = {
+                    trackId,
                     trackLyrics,
                     trackName,
                     trackArtistName,

@@ -61,38 +61,24 @@ export default {
             };
         },
         shareLyricsCard(social) {
-            // set the lyrics footer to display block to show the footer
-            document.querySelector(".lyrics-footer").style.display = "block";
-            const lyricsCardE = document.querySelector(".lyrics-card");
-            html2canvas(lyricsCardE, {
-                useCORS: true,
-                allowTaint: true,
-                backgroundColor: null,
-                scale: 2,
-                width: 350,
-                height: lyricsCardE.offsetHeight
-            }).then(function (canvas) {
-                // Get the base64 encoded image data
-                const imageData = canvas.toDataURL();
-                // Encode the image data in a format that can be passed as a URL parameter
-                const encodedImageData = encodeURIComponent(imageData);
-                const imageUri = `data:image/png;base64,${encodedImageData}`;
-                console.log(imageUri);
-                const text = "Check out this awesome lyrics card I created using SKW!"
-                // Declare the variable outside the switch statement
-                let url;
-                // Build the Twitter share URL
-                switch (social) {
-                    case "twitter":
-                        url = `https://twitter.com/intent/tweet?text=${text}`;
-                        break;
-                    default:
-                        break;
-                }
-                window.open(url, "_blank");
-            });
-            // set the lyrics footer to display none to hide the footer
-            document.querySelector(".lyrics-footer").style.display = "none";
+            // Remove all spaces and quotions (' and ") from the track artist name and track name
+            const artistHashtag = this.lyricsCard.trackArtistName.replace(/[ '"’“”]/g, "").replace(/[^a-zA-ZÀ-ÖØ-öø-ÿ0-9]/g, "");
+            const trackHashtag = this.lyricsCard.trackName.replace(/[ '"’“”]/g, "").replace(/[^a-zA-ZÀ-ÖØ-öø-ÿ0-9]/g, "");
+            const text = `I just created a lyrics card using SKW for the track ${this.lyricsCard.trackName} by ${this.lyricsCard.trackArtistName}, check it out !`;
+            /* const url = `skw.vercel.app/tracks/${this.lyricsCard.trackId}`; */
+            const hashtags = `${artistHashtag},${trackHashtag},SKW`;
+
+            // Declare the variable outside the switch statement
+            let socialUrl;
+            // Build the Twitter share URL
+            switch (social) {
+                case "twitter":
+                    socialUrl = `https://twitter.com/intent/tweet?text=${text}&hashtags=${hashtags}`;
+                    break;
+                default:
+                    break;
+            }
+            window.open(socialUrl, "_blank");
         },
         downloadLyricsCard() {
             // set the lyrics footer to display block to show the footer
