@@ -29,6 +29,12 @@
                             Top Artists
                         </button>
                     </li>
+                    <!-- Playlists -->
+                    <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#playlists-tab-pane">
+                            Playlists
+                        </button>
+                    </li>
                 </ul>
                 <!-- Tabs Content -->
                 <div class="tab-content mt-2" id="myTabContent">
@@ -62,6 +68,14 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Playlists -->
+                    <div class="tab-pane" id="playlists-tab-pane">
+                        <div class="row row-cols-1 g-4">
+                            <div class="col" v-for="playlist in playlists" :key="playlist.id">
+                                <PlaylistCard :playlist="playlist" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -77,6 +91,7 @@ import TrackPlayer from '../../components/track/TrackPlayer.vue';
 import TrackLyrics from '../../components/track/TrackLyrics.vue';
 import TrackCard from '../../components/track/TrackCard.vue';
 import ArtistCard from '../../components/artist/ArtistCard.vue';
+import PlaylistCard from '../../components/playlist/PlaylistCard.vue';
 
 export default {
     name: "MeView",
@@ -98,12 +113,18 @@ export default {
         },
         topArtists() {
             return this.userStore.topArtists
-        }
+        },
+        playlists() {
+            return this.userStore.playlists
+        },
     },
     mounted() {
         this.userStore.getCurrentlyPlaying();
         this.userStore.getTopTracks();
         this.userStore.getTopArtists();
+        this.userStore.getPlaylists().then(() => {
+            console.log(this.playlists);
+        });
     },
     created() {
         setInterval(() => {
@@ -116,6 +137,7 @@ export default {
         TrackLyrics,
         TrackCard,
         ArtistCard,
+        PlaylistCard,
     },
 };
 </script>

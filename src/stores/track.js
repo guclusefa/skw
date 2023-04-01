@@ -2,11 +2,9 @@ import { defineStore } from 'pinia';
 import axios from 'axios';
 
 export const useTrackStore = defineStore('track', {
-    // state
     state: () => ({
         trackLyrics: null,
     }),
-    // actions
     actions: {
         async getLyrics(trackId) {
             // reset lyrics before fetching new lyrics

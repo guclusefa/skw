@@ -2,13 +2,12 @@ import { defineStore } from 'pinia';
 import api from '../services/api';
 
 export const useUserStore = defineStore('user', {
-    // state
     state: () => ({
         currentlyPlaying: null,
         topTracks: null,
         topArtists: null,
+        playlists: null,
     }),
-    // actions
     actions: {
         async getCurrentlyPlaying() {
             const response = await api.get('/me/player/currently-playing');
@@ -29,6 +28,14 @@ export const useUserStore = defineStore('user', {
                 },
             });
             this.topArtists = response.data.items;
+        },
+        async getPlaylists() {
+            const response = await api.get('/me/playlists', {
+                params: {
+                    limit: 50,
+                },
+            });
+            this.playlists = response.data.items;
         },
     },
 });

@@ -2,14 +2,12 @@ import { defineStore } from 'pinia';
 import api from '../services/api';
 
 export const useAuthStore = defineStore('auth', {
-    // states
     state: () => ({
         access_token: localStorage.getItem('auth') ? JSON.parse(localStorage.getItem('auth')).access_token : null,
         refresh_token: localStorage.getItem('auth') ? JSON.parse(localStorage.getItem('auth')).refresh_token : null,
         expires_in: localStorage.getItem('auth') ? JSON.parse(localStorage.getItem('auth')).expires_in : null,
         user: localStorage.getItem('auth') ? JSON.parse(localStorage.getItem('auth')).user : null,
     }),
-    // actions
     actions: {
         async login(access_token, refresh_token, expires_in) {
             // set tokens
@@ -55,7 +53,6 @@ export const useAuthStore = defineStore('auth', {
             localStorage.removeItem('auth')
         },
     },
-    // getters
     getters: {
         isLoggedIn() {
             return this.access_token !== null
