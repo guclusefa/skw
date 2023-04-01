@@ -2,7 +2,8 @@
     <div class="card">
         <div class="row g-0">
             <div class="col-4">
-                <img :src="playlist.images[0].url" class="img-fluid object-fit-cover h-100 rounded-start" v-if="playlist.images.length > 0">
+                <img :src="playlist.images[0].url" class="img-fluid object-fit-cover h-100 rounded-start"
+                    v-if="playlist.images.length > 0">
             </div>
             <div class="col-8">
                 <div class="card-body">
@@ -23,6 +24,9 @@
             </div>
         </div>
     </div>
+    <iframe title="Spotify Embed: Recommendation Playlist " :src="`https://open.spotify.com/embed/playlist/${playlist.id}`"
+        width="100%" height="380" frameborder="0" style="margin-top: 20px; border: 0; border-radius: 1rem;"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" />
 </template>
 
 <script>
