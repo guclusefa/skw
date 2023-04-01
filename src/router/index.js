@@ -37,6 +37,11 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue')
     },
     {
+      path: '/tracks/:id',
+      name: 'track',
+      component: () => import('../views/track/TrackView.vue')
+    },
+    {
       path: '/auth/login',
       name: 'login',
       component: LoginAuth

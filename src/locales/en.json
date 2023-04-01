@@ -5,6 +5,8 @@
         "routes": {
             "home": "Home",
             "about": "About",
+            "tracks": "Tracks",
+            "track": "Track",
             "login": "Login",
             "callback": "Callback",
             "logout": "Logout",

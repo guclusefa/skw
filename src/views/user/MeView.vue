@@ -122,9 +122,7 @@ export default {
         this.userStore.getCurrentlyPlaying();
         this.userStore.getTopTracks();
         this.userStore.getTopArtists();
-        this.userStore.getPlaylists().then(() => {
-            console.log(this.playlists);
-        });
+        this.userStore.getPlaylists();
     },
     created() {
         setInterval(() => {

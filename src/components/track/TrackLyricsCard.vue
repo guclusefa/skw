@@ -56,8 +56,6 @@ export default {
                 document.querySelector(".lyrics-card").style.backgroundColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
                 // set the color of the lyrics text to white or black depending on the dominant color and set to !important to override the bootstrap class
                 document.querySelector(".lyrics-card").style.color = color[0] + color[1] + color[2] > 382 ? "#000" : "#fff";
-/*                 // set border color to the lyrics header to white or black depending on the dominant color
-                document.querySelector(".lyrics-header").style.borderBottomColor = color[0] + color[1] + color[2] > 382 ? "#000" : "#fff"; */
             };
         },
         shareLyricsCard(social) {
@@ -115,8 +113,6 @@ export default {
     display: flex;
     align-items: center;
     padding: 20px 20px 0 20px;
-/*     border-bottom: 1px solid;
-    border-color: rgba(0, 0, 0, 0.125); */
 }
 
 .lyrics-header img {

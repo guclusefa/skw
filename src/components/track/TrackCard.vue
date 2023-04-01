@@ -2,7 +2,9 @@
     <div class="card">
         <div class="row g-0">
             <div class="col-4">
-                <img :src="track.album.images[0].url" class="img-fluid object-fit-cover h-100 rounded-start">
+                <RouterLink :to="{ name: 'track', params: { id: track.id } }">
+                    <img :src="track.album.images[0].url" class="img-fluid object-fit-cover h-100 rounded-start">
+                </RouterLink>
             </div>
             <div class="col-8">
                 <div class="card-body">
@@ -42,7 +44,7 @@ export default {
             const minutes = Math.floor(duration_ms / 60000);
             const seconds = ((duration_ms % 60000) / 1000).toFixed(0);
             return `${minutes}:${(seconds < 10 ? "0" : "")}${seconds}`;
-        
+
         }
     }
 };

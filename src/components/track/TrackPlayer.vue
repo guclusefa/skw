@@ -2,8 +2,10 @@
     <div class="card">
         <div class="row g-0">
             <div class="col-md-4">
-                <img :src="track.item.album.images[0].url" class="img-fluid object-fit-cover h-100 rounded-start"
-                    v-if="track.item.album.images.length > 0">
+                <RouterLink :to="{ name: 'track', params: { id: track.item.id } }">
+                    <img :src="track.item.album.images[0].url" class="img-fluid object-fit-cover h-100 rounded-start"
+                        v-if="track.item.album.images.length > 0">
+                </RouterLink>
             </div>
             <div class="col-md-8">
                 <div class="card-body">

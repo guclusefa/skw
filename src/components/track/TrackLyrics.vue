@@ -15,7 +15,7 @@
                         <i class="bi bi-x fs-5"></i>
                     </button>
                     <button class="btn" @click="fixLyrics = !fixLyrics"
-                        :class="fixLyrics ? 'btn-primary' : 'btn-outline-primary'">
+                        :class="fixLyrics ? 'btn-primary' : 'btn-outline-primary'" v-if="track.item">
                         <i class="bi bi-arrow-down-up fs-5"></i>
                     </button>
                 </div>
@@ -105,11 +105,12 @@ export default {
         },
         generateLyricsCard() {
             // Create lyricsCard object
-            const trackId = this.track.item.id;
+            const trackCard = this.track.item ? this.track.item : this.track;
+            const trackId = trackCard.id;
             const trackLyrics = [];
-            const trackName = this.track.item.name;
-            const trackArtistName = this.track.item.artists[0].name;
-            const trackImage = this.track.item.album.images[0].url;
+            const trackName = trackCard.name;
+            const trackArtistName = trackCard.artists[0].name;
+            const trackImage = trackCard.album.images[0].url;
             this.selectedLines.forEach((line) => {
                 const element = document.getElementById(line);
                 trackLyrics.push(element.innerText);
@@ -142,24 +143,27 @@ export default {
     },
     mounted() {
         // Get lyrics for track
-        this.trackStore.getLyrics(this.track.item.id);
+        const trackId = this.track.item ? this.track.item.id : this.track.id;
+        this.trackStore.getLyrics(trackId);
     },
     created() {
-        // Highlight lyrics every second
-        setInterval(() => {
-            if (this.track && this.track.progress_ms && this.lyrics) {
-                this.highlightLyrics(this.track);
-            }
-        }, 1000);
+        // Highlight lyrics every second if track is item (current track) 
+        if (this.track.item) {
+            setInterval(() => {
+                if (this.track && this.track.progress_ms && this.lyrics) {
+                    this.highlightLyrics(this.track);
+                }
+            }, 1000);
+        }
     },
     watch: {
-        // Watch for changes in track id
+        // Watch for changes in track id if track is item (current track)
         "track.item.id": function (newVal) {
             // Reset selected lines and lyricsCard
             this.clearLyricsCard();
             // Get lyrics for new track
             this.trackStore.getLyrics(newVal);
-        }
+        },
     },
     components: {
         TrackLyricsCard
