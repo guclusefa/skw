@@ -90,6 +90,13 @@
             </div>
         </div>
     </div>
+    <div class="d-flex justify-content-between">
+        <div class="d-flex gap-2">
+            <button class="btn btn-outline-primary" @click="shareTrack('twitter')">
+                <i class="bi bi-twitter fs-5"></i>
+            </button>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -113,6 +120,18 @@ export default {
             const minutes = Math.floor(duration_ms / 60000);
             const seconds = ((duration_ms % 60000) / 1000).toFixed(0);
             return `${minutes}:${(seconds < 10 ? "0" : "")}${seconds}`;
+        },
+        shareTrack(social) {
+            const url = `https://open.spotify.com/track/${this.track.item.id}`;
+            const trackByArtist = `${this.track.item.name} by ${this.track.item.album.artists[0].name}`;
+            const tag = "Check it out on SKW (ratio alvin)";
+            switch (social) {
+                case "twitter":
+                    window.open(`https://twitter.com/intent/tweet?text=${trackByArtist} ${url} ${tag}`, "_blank");
+                    break;
+                default:
+                    break;
+            }
         },
         previousTrack() {
             this.userStore.previousTrack();
