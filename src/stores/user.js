@@ -13,6 +13,18 @@ export const useUserStore = defineStore('user', {
             const response = await api.get('/me/player/currently-playing');
             this.currentlyPlaying = response.data;
         },
+        async playTrack() {
+            await api.put('/me/player/play');
+        },
+        async pauseTrack() {
+            await api.put('/me/player/pause');
+        },
+        async previousTrack() {
+            await api.post('/me/player/previous');
+        },
+        async nextTrack() {
+            await api.post('/me/player/next');
+        },
         async getTopTracks() {
             const response = await api.get('/me/top/tracks', {
                 params: {

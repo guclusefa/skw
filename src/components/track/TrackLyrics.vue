@@ -11,7 +11,7 @@
             </div>
             <div class="d-flex justify-content-between gap-2 mt-2">
                 <div class="d-flex gap-2">
-                    <button class="btn btn-outline-danger" @click="clearLyricsCard()">
+                    <button class="btn btn-outline-danger" @click="clearLyricsCard()" v-if="selectedLines.length > 0">
                         <i class="bi bi-x fs-5"></i>
                     </button>
                     <button class="btn" @click="fixLyrics = !fixLyrics"

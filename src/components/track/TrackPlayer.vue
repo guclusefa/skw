@@ -31,20 +31,20 @@
                     <div class="d-flex flex-column gap-3">
                         <div class="d-flex align-items-center gap-2">
                             <div>
-                                <button class="btn btn-outline-primary">
+                                <button class="btn btn-outline-primary" @click="previousTrack">
                                     <i class="bi bi-skip-backward-fill"></i>
                                 </button>
                             </div>
                             <div>
-                                <button class="btn btn-primary" v-if="track.is_playing">
+                                <button class="btn btn-primary" v-if="track.is_playing" @click="pauseTrack">
                                     <i class="bi bi-pause-fill"></i>
                                 </button>
-                                <button class="btn btn-outline-primary" v-else>
+                                <button class="btn btn-outline-primary" v-else @click="playTrack">
                                     <i class="bi bi-play-fill"></i>
                                 </button>
                             </div>
                             <div>
-                                <button class="btn btn-outline-primary">
+                                <button class="btn btn-outline-primary" @click="nextTrack">
                                     <i class="bi bi-skip-forward-fill"></i>
                                 </button>
                             </div>
@@ -93,6 +93,8 @@
 </template>
 
 <script>
+import { useUserStore } from '../../stores/user';
+
 export default {
     name: "TrackPlayer",
     props: {
@@ -101,11 +103,28 @@ export default {
             required: true
         },
     },
+    data() {
+        return {
+            userStore: useUserStore(),
+        };
+    },
     methods: {
         formatDuration(duration_ms) {
             const minutes = Math.floor(duration_ms / 60000);
             const seconds = ((duration_ms % 60000) / 1000).toFixed(0);
             return `${minutes}:${(seconds < 10 ? "0" : "")}${seconds}`;
+        },
+        previousTrack() {
+            this.userStore.previousTrack();
+        },
+        playTrack() {
+            this.userStore.playTrack();
+        },
+        pauseTrack() {
+            this.userStore.pauseTrack();
+        },
+        nextTrack() {
+            this.userStore.nextTrack();
         },
     },
 };
