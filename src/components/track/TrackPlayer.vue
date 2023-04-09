@@ -127,7 +127,7 @@ export default {
             const tag = "Check it out on SKW (ratio alvin)";
             switch (social) {
                 case "twitter":
-                    window.open(`https://twitter.com/intent/tweet?text=${trackByArtist} ${url} ${tag}`, "_blank");
+                    window.open(`https://twitter.com/intent/tweet?text=${trackByArtist}  ${tag} ${url}`, "_blank");
                     break;
                 default:
                     break;
